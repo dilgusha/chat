@@ -74,11 +74,12 @@
         }
         function sendMessage() {
             let message = document.getElementById('user-input');
-            if (message.value.trim().length < 1) alert("Chatbox is empty");
-            socket.emit('message', { nickName, message: message.value });
-            document.getElementById(
-                "chatbox"
-            ).innerHTML += `<div class="mb-2 text-right" id="message">
+            if (message.value.trim().length < 1) {
+                alert("Chatbox is empty");
+                return;
+            }
+            socket.emit('message', message.value);
+            document.getElementById("chatbox").innerHTML += `<div class="mb-2 text-right" id="message">
                     <p class="bg-blue-500 text-white rounded-lg py-2 px-4 inline-block">${nickName}: ${message.value}</p>
                 </div>`;
 
